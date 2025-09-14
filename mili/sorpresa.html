@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>💖 Tu Sorpresa 💖</title>
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  width:100%;
+  font-family:'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#fbc2eb,#a6c1ee);
+  overflow-x:hidden;
+  scroll-behavior: smooth;
+  position:relative;
+}
+
+/* --- Corazones flotando --- */
+#heartContainer {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  z-index:0;
+}
+.heart {
+  position: absolute;
+  color: #ff1744;
+  font-size: 20px;
+  animation: floatUp 5s linear infinite;
+  opacity:0.8;
+}
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(1); opacity:1; }
+  100% { transform: translateY(-50px) scale(1.5); opacity:0; }
+}
+
+/* --- Secciones --- */
+section{
+  padding:30px 20px;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:1;
+  margin-bottom:30px;
+}
+
+/* Texto con borde y fondo suave para todas las secciones */
+section .text {
+  flex:1;
+  padding:20px;
+  background: linear-gradient(135deg, rgba(251,194,235,0.35), rgba(166,193,238,0.35));
+  border: 2px solid rgba(255,23,68,0.3);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- Imágenes que no son carrusel --- */
+.image {
+  flex:1;
+  padding:0;
+  background: transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing: border-box;
+}
+.image img {
+  width: 850px;    
+  height: 500px;   
+  object-fit: cover; 
+  border-radius: 20px;
+}
+
+/* Imagen de Frases Románticas más grande */
+#frases .image img {
+  width: 600px;   
+  height: 550px;  
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* --- Carrusel con texto a la derecha --- */
+.carousel-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  gap: 15px;
+  margin-top: 20px;
+}
+.carousel-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+}
+.carousel-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+.carousel {
+  width: 650px;
+  height: 450px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.carousel img {
+  width: 100%;
+  height: 100%;
+  display: none;
+  border-radius: 20px;
+  object-fit: cover;
+}
+.carousel img.active { display: block; animation: fade 1s; }
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.controls button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #e91e63;
+  color: white;
+  font-size: 16px;
+  cursor:pointer;
+}
+.controls button:hover { background: #c2185b; }
+
+/* Texto del carrusel */
+.carousel-text {
+  flex: 1;
+}
+.text-carousel {
+  padding:20px;
+  background: linear-gradient(135deg, rgba(251,194,235,0.35), rgba(166,193,238,0.35));
+  border: 2px solid rgba(255,23,68,0.3);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- Frases flotantes --- */
+.floating-text{
+  position: fixed;
+  top: 100%;
+  color: white;
+  font-size: 20px;
+  opacity: 0.9;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  pointer-events: none;
+  user-select: none;
+  animation: floatText 6s linear forwards;
+}
+@keyframes floatText {
+  0% { transform: translateY(0); opacity:1; }
+  80% { transform: translateY(-110vh); opacity:1; }
+  100% { transform: translateY(-110vh); opacity:0; }
+}
+
+/* --- Canvas confetti --- */
+#confettiCanvas {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:998;
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- Corazones flotando -->
+<div id="heartContainer"></div>
+
+<!-- Sección Acerca de Nosotros -->
+<section id="acerca">
+  <div class="text">
+    <h2>Acerca de Nosotros</h2>
+    <p>Desde que nos conocimos, cada día contigo ha sido único.  
+       Risas, aventuras y cariño que nos hace inseparables 💕.</p>
+  </div>
+  <div class="image"><img src="file:///C:/Users/Administrator/Desktop/mili/18073548-cb73-4d46-be43-eb6c02034dca.jfif" alt="Foto juntos"></div>
+</section>
+
+<!-- Sección Galería con carrusel -->
+<section id="galeria">
+  <div class="carousel-wrapper">
+    <div class="carousel-container">
+      <div class="carousel-inner">
+        <div class="carousel">
+          <img src="file:///C:/Users/Administrator/Desktop/mili/18073548-cb73-4d46-be43-eb6c02034dca.jfif" class="active">
+          <img src="C:/Users/Administrator/Desktop/mili/fotos/image.png">
+          <img src="C:/Users/Administrator/Desktop/mili/fotos/WhatsApp Image 2025-09-06 at 1.03.24 PM.jpeg">
+          <img src="C:/Users/Administrator/Desktop/mili/fotos/WhatsApp Image 2025-09-06 at 1.03.53 PM.jpeg">
+          <img src="C:/Users/Administrator/Desktop/mili/fotos/screen.jpeg">
+          <img src="C:/Users/Administrator/Desktop/mili/fotos/WhatsApp Image 2025-09-06 at 1.05.18 PM (1).jpeg">
+                    <img src="C:\Users\Administrator\Desktop\mili\fotos\bb77aceb-8b59-42c7-a73c-674bf5835af5.jpg.jfif ">
+        </div>
+        <div class="controls">
+          <button onclick="prevSlide()">⬅ Anterior</button>
+          <button onclick="nextSlide()">Siguiente ➡</button>
+        </div>
+      </div>
+      <div class="carousel-text">
+        <div class="text-carousel">
+          <h3>Momentos Inolvidables</h3>
+          <p>Disfrutamos cada instante juntos, desde risas hasta aventuras increíbles. Cada recuerdo se queda en mi corazón 💕</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Frases Románticas -->
+<section id="frases">
+  <div class="text">
+    <h2>Acerca de Milagros</h2>
+    <p>Milagros es una chica única 💖. Le encanta bailar, divertirse viendo series y disfrutar de su tiempo libre.</p>
+    <p>No le gustan los punteros y prefiere pasarla tranquila, disfrutando de pequeñas cosas.</p>
+    <p>Su comida favorita es la pizza 🍕, aunque también adora la tarta de frutilla y el lemon pie 🍰.</p>
+    <p>Es una niña trabajadora, con muchas metas a futuro y siempre una sonrisa para todos 😊.</p>
+  </div>
+  <div class="image"><img src="C:\Users\Administrator\Desktop\mili\fotos\granita.jpeg" alt="Foto romántica final"></div>
+</section>
+
+<!-- Canvas confetti -->
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+/* --- Carrusel --- */
+let currentSlide=0;
+const slides=document.querySelectorAll("#galeria .carousel img");
+function showSlide(index){
+  slides.forEach((s,i)=>s.classList.remove("active"));
+  slides[index].classList.add("active");
+}
+function nextSlide(){currentSlide=(currentSlide+1)%slides.length;showSlide(currentSlide);}
+function prevSlide(){currentSlide=(currentSlide-1+slides.length)%slides.length;showSlide(currentSlide);}
+setInterval(nextSlide,4000);
+
+/* --- Corazones flotando --- */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=Math.random()*20+15+"px";
+  heart.style.animationDuration=(Math.random()*3+3)+"s";
+  document.getElementById("heartContainer").appendChild(heart);
+  setTimeout(()=>heart.remove(),5000);
+}
+setInterval(createHeart,500);
+
+/* --- Frases flotantes --- */
+const texts = ["“Disfruta el día 🌟”","Diviertete 😄","Pequeños momentos 💫","Mi India 🐸"];
+function createFloatingText(){
+  const t = document.createElement("div");
+  t.classList.add("floating-text");
+  t.innerText = texts[Math.floor(Math.random()*texts.length)];
+  t.style.left = Math.random() * 80 + "vw";
+  t.style.fontSize = Math.random()*15+15 + "px";
+  document.body.appendChild(t);
+  setTimeout(()=> t.remove(), 6000);
+}
+setInterval(createFloatingText, 1500);
+
+/* --- Confetti canvas --- */
+const canvas = document.getElementById('confettiCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let confettiParticles = [];
+
+function createConfetti(){
+  confettiParticles = [];
+  for(let i=0;i<150;i++){
+    confettiParticles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height - canvas.height,
+      r: Math.random()*6+4,
+      d: Math.random()*150+50,
+      color: ['#ff1744','#ffeb3b','#00e676','#2196f3','#e91e63'][Math.floor(Math.random()*5)],
+      tilt: Math.random()*10-10,
+      tiltAngle:0,
+      tiltAngleIncrement: Math.random()*0.07+0.05
+    });
+  }
+}
+
+function updateConfetti(){
+  confettiParticles.forEach(p=>{
+    p.tiltAngle += p.tiltAngleIncrement;
+    p.y += (Math.cos(p.d)+3+p.r/2)/2;
+    p.x += Math.sin(p.d);
+    p.tilt = Math.sin(p.tiltAngle) * 15;
+    if(p.y > canvas.height){
+      p.y = -10;
+      p.x = Math.random()*canvas.width;
+    }
+  });
+}
+
+function drawConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confettiParticles.forEach(p=>{
+    ctx.beginPath();
+    ctx.lineWidth = p.r/2;
+    ctx.strokeStyle = p.color;
+    ctx.moveTo(p.x + p.tilt + p.r/2, p.y);
+    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/2);
+    ctx.stroke();
+  });
+}
+
+function startConfetti(){
+  createConfetti();
+  const duration = 8000;
+  const start = Date.now();
+  function animate(){
+    let timePassed = Date.now() - start;
+    drawConfetti();
+    updateConfetti();
+    if(timePassed < duration){
+      requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
+  }
+  animate();
+}
+
+let confettiLaunched = false;
+window.addEventListener('scroll', ()=>{
+  if(!confettiLaunched && (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5)){
+    confettiLaunched = true;
+    startConfetti();
+  }
+});
+
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="despedida.html">
+  <button style="
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    " 
+    onmouseover="this.style.backgroundColor='#c2185b'" 
+    onmouseout="this.style.backgroundColor='#e91e63'">
+      Ir a la despedida 💖
+    </button>
+      </a>
+    </div>
+</body>
+</html>
